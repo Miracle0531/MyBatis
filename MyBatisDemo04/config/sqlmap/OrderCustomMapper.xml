@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.mybatis04.mapper.OrderCustomMapper">
+
+    <select id="findOrderAndUserByResultType" resultType="com.itheima.mybatis04.pojo.OrderCustom">
+        SELECT orders.*, user.username, user.address FROM orders, user WHERE orders.user_id = user.id
+    </select>
+
+    <select id="findUserById" parameterType="com.itheima.mybatis04.pojo.User" resultType="com.itheima.mybatis04.pojo.User">
+        SELECT * FROM user WHERE id=#{user.id}
+    </select>
+
+</mapper>

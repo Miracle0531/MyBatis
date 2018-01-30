@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="test">
+    <!-- 根据ID查询用户信息 -->
+    <select id="findUserById" parameterType="int" resultType="com.itheima.mybatis03.po.User">
+        SELECT id, username, birthday, sex, address FROM USER WHERE id= #{id}
+    </select>
+
+    <!-- 查询所有用户 -->
+    <select id="findAllUser" parameterType="java.lang.String" resultType="com.itheima.mybatis03.po.User">
+        SELECT id, username, birthday, sex, address FROM USER
+    </select>
+
+    <!-- 根据用户名进行模糊查询 -->
+    <select id="findUserByUsername" parameterType="java.lang.String" resultType="com.itheima.mybatis03.po.User">
+        SELECT id, username, birthday, sex, address FROM USER WHERE username LIKE '%${value}%'
+    </select>
+
+    <!-- 添加用户 -->
+    <insert id="insertUser" parameterType="com.itheima.mybatis03.po.User">
+        INSERT INTO USER (username,birthday,sex,address) VALUES (#{username},#{birthday},#{sex},#{address})
+    </insert>
+
+    <!-- 修改用户 -->
+    <update id="updateUserById" parameterType="com.itheima.mybatis03.po.User">
+        UPDATE USER SET username=#{username}, birthday=#{birthday}, sex=#{sex}, address=#{address} WHERE id=#{id}
+    </update>
+
+    <!-- 删除用户 -->
+    <delete id="deleteUser" parameterType="int">
+        DELETE FROM USER WHERE id=#{id}
+    </delete>
+
+</mapper>
